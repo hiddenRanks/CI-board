@@ -17,30 +17,30 @@
             </span>
         </div>
 
-        <?php if ($read->app_period != null && $read->app_period != '0000-00-00 00:00:00') { ?>
+        <?php if ($read->app_period != null && $read->app_period != '0000-00-00 00:00:00'): ?>
             <div class="come-together">
                 <span class="period-btn">
-                    <?php if ($apply) { ?>
+                    <?php if ($apply): ?>
                         모집완료
-                    <?php } else { ?>
+                    <?php else: ?>
                         모집신청
-                    <?php } ?>
+                    <?php endif ?>
                 </span>
                 모집 기간 <?= $read->app_period ?>까지
             </div>
             <div class="period_cnt">
-                <?php if ($read->recruit_cnt == null) { ?>
+                <?php if ($read->recruit_cnt == null): ?>
                     <span>0</span>
-                <?php } else { ?>
+                <?php else: ?>
                     <span><?= $read->recruit_cnt ?></span>
-                <?php } ?>
+                <?php endif ?>
                 명이 신청했습니다.
             </div>
-        <?php } ?>
+        <?php endif ?>
 
-        <?php if ($join != NULL) { ?>
+        <?php if ($join != NULL): ?>
             <div class="exercise-total">
-                <?php foreach ($join->result() as $item) { ?>
+                <?php foreach ($join->result() as $item): ?>
                     <span class="sport-title"><?= $item->sport ?></span>
                     <div class="exercise-total-result">
                         <span class="exercise-total-list">
@@ -58,15 +58,15 @@
                             <span class="unit">km/h</span>
                         </span>
                     </div>
-                <?php } ?>
+                <?php endforeach ?>
             </div>
-        <?php } ?>
+        <?php endif ?>
 
         <div class="read-content"><?= $read->contents ?></div>
 
-        <?php if ($join != NULL) { ?>
+        <?php if ($join != NULL): ?>
             <div class="read-exercise">
-                <?php foreach ($join->result() as $item) { ?>
+                <?php foreach ($join->result() as $item): ?>
                     <ul class="item-act">
                         <li>
                             <label>시&emsp;&emsp;간</label>
@@ -184,28 +184,28 @@
                             </span>
                         </li>
                     </ul>
-                <?php } ?>
+                <?php endforeach ?>
             </div>
-        <?php } ?>
+        <?php endif ?>
 
-        <?php if ($this->session->userdata('is_login') && ($this->session->userdata('user_id') == $read->user_id)) { ?>
+        <?php if ($this->session->userdata('is_login') && ($this->session->userdata('user_id') == $read->user_id)): ?>
             <div class="btn-box">
                 <a href="/story/delete/<?= $read->post_id ?>" class="remove-btn">삭제</a>
                 <a href="/story/update/<?= $read->post_id ?>" class="update-btn">수정</a>
             </div>
-        <?php } ?>
+        <?php endif ?>
 
         <div class="comment-box">
-            <?php if (!$this->session->userdata('is_login')) { ?>
+            <?php if (!$this->session->userdata('is_login')): ?>
                 <a href="/login/login">댓글을 다실려면&nbsp;<span>로그인</span>을 하셔야합니다.</a>
-            <?php } else { ?>
+            <?php else: ?>
                 <textarea name="comment_form" id="comment-form"></textarea>
                 <span class="comment-btn">전송</span>
-            <?php } ?>
+            <?php endif ?>
         </div>
         <div class="comment-area">
             <ul>
-                <?php foreach ($comment as $item) { ?>
+                <?php foreach ($comment as $item): ?>
                     <li>
                         <div class="comment-userinfo">
                             <span class="comment-profile"><img src="<?= $item->profile ?>"></span>
@@ -226,15 +226,15 @@
                             </ul>
                         </div>
                         <div class="reply-formbox" id="reply-<?= $item->comment_id ?>">
-                            <?php if (!$this->session->userdata('is_login')) { ?>
+                            <?php if (!$this->session->userdata('is_login')): ?>
                                 <a href="/login/login">답글을 다실려면&nbsp;<span>로그인</span>을 하셔야합니다.</a>
-                            <?php } else { ?>
+                            <?php else: ?>
                                 <textarea name="reply_form" id="reply-form"></textarea>
                                 <span class="reply-btn">전송</span>
-                            <?php } ?>
+                            <?php endif ?>
                         </div>
                     </li>
-                <?php } ?>
+                <?php endforeach ?>
             </ul>
         </div>
     </section>

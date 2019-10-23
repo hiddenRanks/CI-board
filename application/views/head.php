@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/lib/fontawesome-free-5.11.2-web/css/all.min.css">
 
-    <?php if ($this->session->flashdata('msg')) { ?>
+    <?php if ($this->session->flashdata('msg')): ?>
         <script>
             alert('<?= $this->session->flashdata('msg') ?>');
         </script>
-    <?php } ?>
+    <?php endif ?>
 </head>
 
 <body>
@@ -24,14 +24,14 @@
             </a>
 
             <div class="user-box">
-                <?php if ($this->session->userdata('is_login')) { ?>
+                <?php if ($this->session->userdata('is_login')): ?>
                     어서오세요, <a href="/user/userinfo"><?= $this->session->userdata('user_id') ?></a>님! &nbsp;
                     <a href="/login/logout" class="logout-btn">로그아웃</a> &nbsp;
                     <a href="/story/add" class="write-btn">글쓰기</a>
-                <?php } else { ?>
+                <?php else: ?>
                     <a href="/login/login">로그인</a>
                     <a href="/login/register">회원가입</a>
-                <?php } ?>
+                <?php endif ?>
             </div>
         </section>
     </header>

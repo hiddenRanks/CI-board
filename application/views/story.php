@@ -15,8 +15,8 @@
                         <th class="board-date">날짜</th>
                     </tr>
 
-                    <?php foreach ($board->result() as $item) { ?>
-                        <?php if ($item->app_period == null || $item->app_period == '0000-00-00 00:00:00') { ?>
+                    <?php foreach ($board->result() as $item): ?>
+                        <?php if ($item->app_period == null || $item->app_period == '0000-00-00 00:00:00'): ?>
                             <tr class="table-body">
                                 <td class="board-td-num"><?= $item->post_id ?></td>
                                 <td class="board-td-writer"><?= $item->user_id ?></td>
@@ -24,11 +24,11 @@
                                     <a href="/story/view/story/post_id/<?= $item->post_id ?>">
                                         <span class="board-td-title"><?= $item->title ?></span>
                                         <span class="comment-color">
-                                            <?php if ($item->comment_cnt > 0) { ?>
+                                            <?php if ($item->comment_cnt > 0): ?>
                                                 (<?= $item->comment_cnt ?>)
-                                            <?php } else { ?>
+                                            <?php else: ?>
 
-                                            <?php } ?>
+                                            <?php endif ?>
                                         </span>
                                     </a>
                                 </td>
@@ -43,8 +43,8 @@
                                     ?>
                                 </td>
                             </tr>
-                        <?php } ?>
-                    <?php } ?>
+                        <?php endif ?>
+                    <?php endforeach ?>
                 </table>
             </div>
 
@@ -58,8 +58,8 @@
                         <th class="board-date">날짜</th>
                     </tr>
 
-                    <?php foreach ($board->result() as $item) { ?>
-                        <?php if ($item->app_period != null && $item->app_period != '0000-00-00 00:00:00') { ?>
+                    <?php foreach ($board->result() as $item): ?>
+                        <?php if ($item->app_period != null && $item->app_period != '0000-00-00 00:00:00'): ?>
                             <tr class="table-body">
                                 <td class="board-td-num"><?= $item->post_id ?></td>
                                 <td class="board-td-writer"><?= $item->user_id ?></td>
@@ -67,11 +67,11 @@
                                     <a href="/story/view/story/post_id/<?= $item->post_id ?>">
                                         <span class="board-td-title"><?= $item->title ?></span>
                                         <span class="comment-color">
-                                            <?php if ($item->comment_cnt > 0) { ?>
+                                            <?php if ($item->comment_cnt > 0): ?>
                                                 (<?= $item->comment_cnt ?>)
-                                            <?php } else { ?>
+                                            <?php else: ?>
                                                 
-                                            <?php } ?>
+                                            <?php endif ?>
                                         </span>
                                     </a>
                                 </td>
@@ -86,8 +86,8 @@
                                     ?>
                                 </td>
                             </tr>
-                        <?php } ?>
-                    <?php } ?>
+                        <?php endif ?>
+                    <?php endforeach ?>
                 </table>
             </div>
         </div>
