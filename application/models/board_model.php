@@ -124,7 +124,7 @@ class Board_model extends CI_Model
     {
         // 신청 조회
         $board = $this->db->get_where('tb_user_board', array('post_id' => $post_id))->row();
-        $now_time = strtotime(date('Y-m-d'));
+        $now_time = strtotime(date('Y-m-d H:i:s'));
         $record_time = strtotime($board->app_period);
 
         if ($now_time > $record_time) {
