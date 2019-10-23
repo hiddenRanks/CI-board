@@ -38,21 +38,21 @@ class User_model extends CI_Model
     }
 
     // 유저 정보
-    function getInfo($info)
+    function get_info($info)
     {
         $result = $this->db->get_where('tb_user_info', array('user_id' => $info['user_id']))->row();
         return $result;
     }
 
     // 유저 프로필 정보
-    function getProfile($info)
+    function get_profile($info)
     {
         $result = $this->db->get_where('tb_user_profile', array('user_id' => $info['user_id']))->row();
         return $result;
     }
 
     // 유저 프로필 저장
-    function saveProfile($info, $img_checker)
+    function save_profile($info, $img_checker)
     {
         if ($this->session->userdata('is_login')) {
             // 유저 생년월일, 실명, 키, 몸무게, 나이, 성별

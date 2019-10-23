@@ -26,7 +26,7 @@ class Story extends CI_Controller
     {
         $this->_head();
 
-        $read = $this->board_model->getAll();
+        $read = $this->board_model->get_all();
         $date = date("m-d", strtotime("+1 day"));
         $this->load->view('story', array('board' => $read, 'timestamp' => $date));
 
@@ -163,12 +163,12 @@ class Story extends CI_Controller
     function like()
     {
         if (!empty($this->session->userdata('is_login'))) {
-            $checker = $this->board_model->likeChecker($this->input->post('post_id'), $this->session->userdata('user_id'));
+            $checker = $this->board_model->like_checker($this->input->post('post_id'), $this->session->userdata('user_id'));
             if ($checker == true) {
                 $error = 2; // 2: 중복 에러
                 echo $error;
             } else {
-                $this->board_model->likeSave($this->input->post('post_id'), $this->session->userdata('user_id'));
+                $this->board_model->like_save($this->input->post('post_id'), $this->session->userdata('user_id'));
                 $result = $this->board_model->like($this->input->post('post_id'));
                 echo $result;
             }
@@ -182,14 +182,14 @@ class Story extends CI_Controller
     function apply()
     {
         if (!empty($this->session->userdata('is_login'))) {
-            $checker = $this->board_model->applyChecker($this->input->post('post_id'), $this->session->userdata('user_id'));
+            $checker = $this->board_model->apply_checker($this->input->post('post_id'), $this->session->userdata('user_id'));
             if ($checker == true) {
                 $error = 2; // 2: 중복 에러
                 echo $error;
             } else {
                 $result = $this->board_model->apply($this->input->post('post_id'));
                 if ($result != null) {
-                    $this->board_model->applySave($this->input->post('post_id'), $this->session->userdata('user_id'));
+                    $this->board_model->apply_save($this->input->post('post_id'), $this->session->userdata('user_id'));
                     echo $result + 1;
                 } else {
                     $error = 3; // 3: 신청 기간 종료

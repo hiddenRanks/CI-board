@@ -9,7 +9,7 @@ class Board_model extends CI_Model
     }
 
     // 게시글 전체 가져오기
-    function getAll()
+    function get_all()
     {
         $this->db->select('*');
         $this->db->from('tb_user_board');
@@ -99,7 +99,7 @@ class Board_model extends CI_Model
     }
 
     // 좋아요: 유저 아이디와 게시판 아이디 저장(중복 체크를 위한 저장)
-    function likeSave($post_id, $user_id)
+    function like_save($post_id, $user_id)
     {
         $data = array(
             'post_id' => $post_id,
@@ -111,7 +111,7 @@ class Board_model extends CI_Model
     }
 
     // 좋아요: 중복 체크
-    function likeChecker($post_id, $user_id)
+    function like_checker($post_id, $user_id)
     {
         $like = $this->db->get_where('tb_user_like', array('post_id' => $post_id, 'user_id' => $user_id))->row_array();
         if(count($like) == 2) {
@@ -130,6 +130,7 @@ class Board_model extends CI_Model
         $now_time = strtotime(date('Y-m-d H:i:s'));
         $record_time = strtotime($board->app_period);
 
+        // 현재 시간이랑 기록된 시간 비교
         if ($now_time > $record_time) {
             return null;
         } else {
@@ -142,7 +143,7 @@ class Board_model extends CI_Model
     }
 
     // 신청: 유저 아이디와 게시판 아이디 저장(중복 체크를 위한 저장)
-    function applySave($post_id, $user_id)
+    function apply_save($post_id, $user_id)
     {
         $data = array(
             'post_id' => $post_id,
@@ -154,7 +155,7 @@ class Board_model extends CI_Model
     }
 
     // 신청: 중복 및 기간체크
-    function applyChecker($post_id, $user_id)
+    function apply_checker($post_id, $user_id)
     {
         $apply = $this->db->get_where('tb_user_apply', array('post_id' => $post_id, 'user_id' => $user_id))->row_array();
         if(count($apply) == 2) {

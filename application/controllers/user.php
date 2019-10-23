@@ -38,7 +38,7 @@ class User extends CI_Controller
             $this->form_validation->set_rules('age', '나이', 'is_natural');
 
             if ($this->form_validation->run() == FALSE) {
-                $user = $this->user_model->getProfile(array('user_id' => $this->session->userdata('user_id')));
+                $user = $this->user_model->get_profile(array('user_id' => $this->session->userdata('user_id')));
                 $this->load->view('userProfile', array('userinfo' => $user));
             } else {
                 // 파일명 변경
@@ -73,7 +73,7 @@ class User extends CI_Controller
                     echo "<script>alert('업로드에 실패했습니다." . $this->upload->display_errors('', '') . "');</script>"; // 개발자용
                     redirect('user/userinfo');
                 } else {
-                    $user = $this->user_model->getProfile(array('user_id' => $this->session->userdata('user_id')));
+                    $user = $this->user_model->get_profile(array('user_id' => $this->session->userdata('user_id')));
 
                     // 변경될 키 체크
                     if ($this->input->post('height') != $user->height && $this->input->post('height') >= 0) {
@@ -125,7 +125,7 @@ class User extends CI_Controller
                     }
 
 
-                    $data = $this->user_model->saveProfile($data, $img_checker);
+                    $data = $this->user_model->save_profile($data, $img_checker);
                     if ($data == null) {
                         $this->session->set_flashdata('msg', '프로필 저장에 실패하셧습니다.');
                         redirect('/user/userinfo');

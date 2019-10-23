@@ -38,7 +38,7 @@ class Login extends CI_Controller {
     {
         $this->load->helper('url');
 
-        $user = $this->user_model->getInfo(array('user_id'=>$this->input->post('user_id')));
+        $user = $this->user_model->get_info(array('user_id'=>$this->input->post('user_id')));
         if($this->input->post('user_id') == $user->user_id && password_verify($this->input->post('user_pw'), $user->user_pw))  {
             $this->session->set_userdata('is_login', true);
             $this->session->set_userdata('user_id', $user->user_id);
