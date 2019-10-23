@@ -113,9 +113,12 @@ class Board_model extends CI_Model
     // 좋아요: 중복 체크
     function likeChecker($post_id, $user_id)
     {
-        $board = $this->db->get_where('tb_user_like', array('post_id' => $post_id, 'user_id' => $user_id))->row();
-
-        return $board;
+        $like = $this->db->get_where('tb_user_like', array('post_id' => $post_id, 'user_id' => $user_id))->row_array();
+        if(count($like) == 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

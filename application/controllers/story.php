@@ -164,7 +164,7 @@ class Story extends CI_Controller
     {
         if (!empty($this->session->userdata('is_login'))) {
             $checker = $this->board_model->likeChecker($this->input->post('post_id'), $this->session->userdata('user_id'));
-            if ($checker) {
+            if ($checker == true) {
                 $error = 2; // 2: 중복 에러
                 echo $error;
             } else {
