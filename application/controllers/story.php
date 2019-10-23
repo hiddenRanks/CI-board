@@ -27,7 +27,7 @@ class Story extends CI_Controller
         $this->_head();
 
         $read = $this->board_model->get_all();
-        $date = date("m-d", strtotime("+1 day"));
+        $date = date("m-d");
         $this->load->view('story', array('board' => $read, 'timestamp' => $date));
 
         $this->_foot();
