@@ -344,7 +344,7 @@
             let post_id = $('.post-id').val();
 
             $.ajax({
-                url: "/story/replyView",
+                url: "/story/reply_view",
                 type: "POST",
                 data: {
                     post_id: post_id,

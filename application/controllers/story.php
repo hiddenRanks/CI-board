@@ -225,7 +225,7 @@ class Story extends CI_Controller
     }
 
     // 답글 보기
-    function replyView()
+    function reply_view()
     {
         $result = $this->board_model->reply_call($this->input->post('post_id'), $this->input->post('parent_id'));
         foreach ($result as $item) {
