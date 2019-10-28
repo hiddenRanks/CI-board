@@ -18,7 +18,7 @@
                 <?php
                 if (strpos(form_error('user_pw'), 'required')) {
                     echo '<span class="login-error">비밀번호를 적어야 합니다.</span>';
-                } else if (strpos(form_error('nickname'), 'length')) {
+                } else if (strpos(form_error('user_pw'), 'length')) {
                     echo '<span class="login-error">비밀번호를 8~16글자 사이로 해주세요.</span>';
                 }
                 ?>
