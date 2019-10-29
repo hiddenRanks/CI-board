@@ -42,7 +42,7 @@ class Story extends CI_Controller
         $comment = $this->board_model->comment_call($post_id);
 
         // 검색을 해서 신청을 햇을 시 $apply = true, 안 햇을 시 $apply = false
-        if(!empty($this->session->userdata('is_login'))) {
+        if($this->session->userdata('is_login') == true) {
             $apply = $this->board_model->apply_call($post_id, $this->session->userdata('user_id'));
             if ($apply == true) {
                 $apply = true;
@@ -59,6 +59,15 @@ class Story extends CI_Controller
         } else {
             $this->load->view('read', array('read' => $read['board'], 'join' => NULL, 'comment' => $comment, 'apply' => $apply));
         }
+
+        $this->_foot();
+    }
+
+    function search()
+    {
+        $this->_head();
+
+        $this->load->view('search');
 
         $this->_foot();
     }
@@ -162,7 +171,7 @@ class Story extends CI_Controller
     // 좋아요 관련
     function like()
     {
-        if (!empty($this->session->userdata('is_login'))) {
+        if ($this->session->userdata('is_login') == true) {
             $checker = $this->board_model->like_checker($this->input->post('post_id'), $this->session->userdata('user_id'));
             if ($checker == true) {
                 $error = 2; // 2: 중복 에러
@@ -181,7 +190,7 @@ class Story extends CI_Controller
     // 모집 신청
     function apply()
     {
-        if (!empty($this->session->userdata('is_login'))) {
+        if ($this->session->userdata('is_login') == true) {
             $checker = $this->board_model->apply_checker($this->input->post('post_id'), $this->session->userdata('user_id'));
             if ($checker == true) {
                 $error = 2; // 2: 중복 에러
@@ -205,7 +214,7 @@ class Story extends CI_Controller
     // 댓글 관련
     function comment()
     {
-        if (!empty($this->session->userdata('is_login'))) {
+        if ($this->session->userdata('is_login') == true) {
             $this->board_model->comment_save($this->input->post('post_id'), $this->session->userdata('user_id'), $this->input->post('content'));
         } else {
             $error = 1;
@@ -216,7 +225,7 @@ class Story extends CI_Controller
     // 답글 달기
     function reply()
     {
-        if (!empty($this->session->userdata('is_login'))) {
+        if ($this->session->userdata('is_login') == true) {
             $this->board_model->reply_save($this->input->post('post_id'), $this->session->userdata('user_id'), $this->input->post('content'), $this->input->post('parent_id'));
         } else {
             $error = 1;
